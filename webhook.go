@@ -11,6 +11,10 @@ type VerifyPayload struct {
 	Challenge string `json:"challenge"`
 }
 
+func WebhookHome(writer http.ResponseWriter, request *http.Request) {
+	json.NewEncoder(writer).Encode("I'm Up.")
+}
+
 func WebhookVerify(writer http.ResponseWriter, request *http.Request) {
 	var verifyPayload VerifyPayload
 	json.NewDecoder(request.Body).Decode(&verifyPayload)

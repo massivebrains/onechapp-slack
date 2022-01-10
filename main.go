@@ -15,6 +15,7 @@ func main() {
 func initializeRouter() {
 	router := mux.NewRouter()
 	router.Use(commonMiddleware)
+	router.HandleFunc("/", WebhookHome).Methods("GET")
 	router.HandleFunc("/webhook/verify", WebhookVerify).Methods("POST")
 
 	fmt.Println("App listening on port 3000")
