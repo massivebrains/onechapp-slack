@@ -1,1 +1,1 @@
-web: bin/onechapp-webhook
+web: onechapp-slack
