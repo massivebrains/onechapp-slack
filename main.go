@@ -18,8 +18,8 @@ func initializeRouter() {
 	router.HandleFunc("/", WebhookHome).Methods("GET")
 	router.HandleFunc("/webhook/verify", WebhookVerify).Methods("POST")
 
-	fmt.Println("App listening on port 3000")
-	log.Fatal(http.ListenAndServe(":3000", router))
+	fmt.Println("App listening on port 8080")
+	log.Fatal(http.ListenAndServe(":8080", router))
 }
 
 func commonMiddleware(next http.Handler) http.Handler {
