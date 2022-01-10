@@ -1,1 +1,1 @@
-web: .
+web: onechapp-webhook
