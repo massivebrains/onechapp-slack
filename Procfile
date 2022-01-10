@@ -1,1 +1,1 @@
-web: onechapp-webhook
+web: bin/onechapp-webhook
