@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/gorilla/mux"
 )
@@ -18,8 +19,14 @@ func initializeRouter() {
 	router.HandleFunc("/", WebhookHome).Methods("GET")
 	router.HandleFunc("/webhook/verify", WebhookVerify).Methods("POST")
 
-	fmt.Println("App listening on port 8080")
-	log.Fatal(http.ListenAndServe(":8080", router))
+	port := os.Getenv("PORT")
+	if len(port) < 1 {
+		port = "3000"
+	}
+
+	message := fmt.Sprintf("App listening on port %s", port)
+	fmt.Println(message)
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", port), router))
 }
 
 func commonMiddleware(next http.Handler) http.Handler {
