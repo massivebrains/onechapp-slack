@@ -16,7 +16,7 @@ func main() {
 func initializeRouter() {
 	router := mux.NewRouter()
 	router.Use(commonMiddleware)
-	router.HandleFunc("/", WebhookHome).Methods("GET")
+	router.HandleFunc("/", HomeDefault).Methods("GET")
 	router.HandleFunc("/webhook", Execute).Methods("POST")
 
 	port := os.Getenv("PORT")
