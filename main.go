@@ -17,7 +17,7 @@ func initializeRouter() {
 	router := mux.NewRouter()
 	router.Use(commonMiddleware)
 	router.HandleFunc("/", WebhookHome).Methods("GET")
-	router.HandleFunc("/webhook/verify", WebhookVerify).Methods("POST")
+	router.HandleFunc("/webhook", Execute).Methods("POST")
 
 	port := os.Getenv("PORT")
 	if len(port) < 1 {

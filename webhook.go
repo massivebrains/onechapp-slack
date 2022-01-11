@@ -5,21 +5,24 @@ import (
 	"net/http"
 )
 
-type VerifyPayload struct {
-	Type      string `json:"type"`
-	Token     string `json:"token"`
-	Challenge string `json:"challenge"`
-}
-
 func WebhookHome(writer http.ResponseWriter, request *http.Request) {
-	json.NewEncoder(writer).Encode("I'm Up.")
+	response := map[string]interface{}{
+		"status":  "Successful",
+		"message": "Request Succesful",
+	}
+
+	json.NewEncoder(writer).Encode(response)
 }
 
-func WebhookVerify(writer http.ResponseWriter, request *http.Request) {
-	var verifyPayload VerifyPayload
-	json.NewDecoder(request.Body).Decode(&verifyPayload)
-	responseData := map[string]interface{}{
-		"challenge": verifyPayload.Challenge,
+func Execute(writer http.ResponseWriter, request *http.Request) {
+	var payload map[string]interface{}
+	json.NewDecoder(request.Body).Decode(&payload)
+	response := map[string]interface{}{
+		"status":  "Successful",
+		"message": "Request Successful",
+		"data": map[string]interface{}{
+			"challenge": payload["challenge"],
+		},
 	}
-	json.NewEncoder(writer).Encode(responseData)
+	json.NewEncoder(writer).Encode(response)
 }
